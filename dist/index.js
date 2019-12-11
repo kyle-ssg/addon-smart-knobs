@@ -25,7 +25,9 @@ var getPropTypes = (type) => {
         type.__docgenInfo && type.__docgenInfo.props && type.__docgenInfo.props[property];
       const description = docgenInfo ? docgenInfo.description : null;
       let propType = propTypesMap.get(typeInfo) || 'other';
-
+      if (propType === 'node') {
+        propType = 'object';
+      }
       if (propType === 'other') {
         if (docgenInfo && docgenInfo.type) {
           propType = docgenInfo.type.name;
